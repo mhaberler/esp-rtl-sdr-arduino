@@ -138,8 +138,7 @@ static bool enable_usb_power(void)
     ESP_ERROR_CHECK(gpio_config(&vbus_cfg));
     ESP_ERROR_CHECK(gpio_set_level((gpio_num_t)USB_VBUS_EN_GPIO, 1));
 
-    /* Give the dongle time to charge caps before enumeration */
-    vTaskDelay(pdMS_TO_TICKS(500));
+    settle_ms(500);
     return true;
 #endif
 }
